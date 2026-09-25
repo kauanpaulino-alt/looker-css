@@ -1,51 +1,67 @@
 /* ============================================================
-   1. ESTRUTURA E CABEÇALHOS DA TABELA
+   1. REMOVER O CABEÇALHO SUPERIOR DE RESUMO / FILTROS
    ============================================================ */
-table, .rt-table {
-    border-collapse: collapse !important;
-    width: 100% !important;
-}
-
-.rt-table thead th, th {
-    background-color: #1f2937 !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    padding: 8px 10px !important;
-    border: 1px solid #374151 !important;
-}
-
-td, .rt-table td {
-    padding: 6px 10px !important;
-    border: 1px solid #e5e7eb !important;
-}
-
-/* ============================================================
-   2. OCULTAÇÃO DAS COLUNAS (6, 11, 13 e 14)
-   ============================================================ */
-th:nth-child(6),  td:nth-child(6),
-th:nth-child(11), td:nth-child(11),
-th:nth-child(13), td:nth-child(13),
-th:nth-child(14), td:nth-child(14) {
+.rt-header-container,
+.rt-summary-container,
+.rt-top-section,
+.rt-pivot-header,
+.rt-header-table,
+div[class*="summary"],
+div[class*="top-header"],
+div[class*="header"],
+.rt-container > table:first-child:not(:only-child) {
     display: none !important;
 }
 
 /* ============================================================
-   3. ESTILIZAÇÃO DE LINHAS (MICRO VS MACRO)
+   2. ESTRUTURA GERAL DA TABELA E CABEÇALHOS DAS COLUNAS
    ============================================================ */
-
-/* Segmentos (Nível Micro): Fundo Branco */
-tbody tr:not([class*="subtotal"]):not(.rt-subtotal-row) td {
-    background-color: #ffffff !important;
-    color: #111827 !important;
+table.rt-table, .rt-table {
+    border-collapse: collapse !important;
+    width: 100% !important;
 }
 
-/* Subtotais / Área de Negócio (Nível Macro): Fundo Cinza Destaque */
+/* Cabeçalho das Colunas (Escuro com texto branco) */
+.rt-table thead th, th {
+    background-color: #1a2332 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    padding: 8px 10px !important;
+    border: 1px solid #2d3748 !important;
+}
+
+/* Células de dados */
+td, .rt-table td {
+    padding: 6px 10px !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+/* ============================================================
+   3. LINHAS NORMAIS / SEGMENTOS (NÍVEL MICRO)
+   Fundo limpo / branco
+   ============================================================ */
+tbody tr:not([class*="subtotal"]):not([class*="total"]):not(.rt-subtotal-row) td {
+    background-color: #ffffff !important;
+    color: #1a202c !important;
+    font-weight: normal !important;
+}
+
+/* ============================================================
+   4. LINHAS DE SUBTOTAL / ÁREA DE NEGÓCIO (NÍVEL MACRO)
+   Fundo Cinza Destacado com texto em negrito
+   ============================================================ */
+tr[class*="subtotal"],
 tr[class*="subtotal"] td,
-tr.rt-subtotal-row td {
-    background-color: #cbd5e1 !important;
+tr.rt-subtotal-row,
+tr.rt-subtotal-row td,
+tr[class*="total"],
+tr[class*="total"] td,
+tr.rt-total-row td,
+tr.rt-group-subtotal td {
+    background-color: #94a3b8 !important; /* Cinza escuro/médio de alto contraste */
+    color: #0f172a !important;
     font-weight: bold !important;
     font-style: italic !important;
-    color: #0f172a !important;
-    border-top: 1px solid #94a3b8 !important;
-    border-bottom: 2px solid #64748b !important;
+    border-top: 1px solid #64748b !important;
+    border-bottom: 2px solid #475569 !important;
 }
