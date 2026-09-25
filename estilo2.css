@@ -1,0 +1,115 @@
+/* ============================================================
+   1. REMOVER CABEÇALHO SUPERIOR (RESUMOS E FILTROS DINÂMICOS)
+   ============================================================ */
+.rt-header-container,
+.rt-summary-container,
+.rt-top-section,
+.rt-pivot-header,
+.rt-header-table,
+div[class*="summary"],
+div[class*="top-header"],
+div[class*="header"],
+.rt-container > table:first-child:not(:only-child) {
+    display: none !important;
+}
+
+/* ============================================================
+   2. ESTRUTURA GERAL DA TABELA E CABEÇALHOS
+   ============================================================ */
+table.rt-table, .rt-table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+}
+
+/* Estilo Base dos Cabeçalhos das Colunas */
+.rt-table thead th, th {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+    padding: 8px 10px !important;
+    border: 1px solid #d1d5db !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+/* Células de dados */
+td, .rt-table td {
+    padding: 6px 10px !important;
+    border: 1px solid #d1d5db !important;
+}
+
+/* ============================================================
+   3. OCULTAR COLUNAS (7, 11 e 12)
+   ============================================================ */
+/* Coluna 7 (Producao 2) */
+th:nth-child(7), td:nth-child(7) { display: none !important; }
+
+/* Coluna 11 (Produção - Ano Anterior) */
+th:nth-child(11), td:nth-child(11) { display: none !important; }
+
+/* Coluna 12 (Quantidade - Ano Anterior) */
+th:nth-child(12), td:nth-child(12) { display: none !important; }
+
+/* ============================================================
+   4. RENOMEAR COLUNAS (5, 8 e 10)
+   ============================================================ */
+/* Coluna 5: De "Var %" para "Atingimento" */
+th:nth-child(5) { font-size: 0 !important; }
+th:nth-child(5)::after {
+    content: "Atingimento" !important;
+    font-size: 12px !important;
+    display: inline-block !important;
+}
+
+/* Coluna 8: De "Var %" para "YOY Produção" */
+th:nth-child(8) { font-size: 0 !important; }
+th:nth-child(8)::after {
+    content: "YOY Produção" !important;
+    font-size: 12px !important;
+    display: inline-block !important;
+}
+
+/* Coluna 10: De "Var %" para "QTD YOY" */
+th:nth-child(10) { font-size: 0 !important; }
+th:nth-child(10)::after {
+    content: "QTD YOY" !important;
+    font-size: 12px !important;
+    display: inline-block !important;
+}
+
+/* ============================================================
+   5. ESTILIZAÇÃO DAS LINHAS (SEGMENTO VS ÁREA DE NEGÓCIO)
+   ============================================================ */
+/* Nível Micro (Segmentos): Fundo branco, sem negrito */
+tbody tr:not([class*="subtotal"]):not([class*="total"]):not(.rt-subtotal-row) td {
+    background-color: #ffffff !important;
+    color: #1a202c !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+}
+
+/* Nível Macro (Subtotal / Área de Negócio): Fundo Cinza Escuro e Negrito */
+tr[class*="subtotal"] td,
+tr.rt-subtotal-row td,
+tr.rt-group-subtotal td,
+/* Seletor específico para o padrão da sua imagem */
+tr:nth-child(even)[class*="group"] td,
+tr:nth-child(odd)[class*="group"] td,
+tbody tr[style*="font-weight: bold"] td,
+tbody tr[style*="font-style: italic"] td {
+    background-color: #cbd5e1 !important; /* Cinza médio/escuro */
+    color: #000000 !important;
+    font-weight: bold !important;
+    font-style: italic !important;
+    border-top: 1px solid #94a3b8 !important;
+    border-bottom: 2px solid #64748b !important;
+}
+
+/* Linha de TOTAL Geral (Última linha) */
+tr[class*="total"] td,
+tr.rt-total-row td {
+    background-color: #e2e8f0 !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+    border-top: 2px solid #000000 !important;
+}
